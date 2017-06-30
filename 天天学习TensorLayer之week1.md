@@ -48,4 +48,6 @@ class MyDenseLayer(Layer):
 ```
 其中自定义部分功能可以通过`LambdaLayer`实现,代码更为简洁.
 
-
+## 训练/测试切换
+通常在应用了`DropoutLayer`的时候这个问题会被考虑到,因为网络在训练和测试时候的工作方式不同.通常我们需要在训练的时候把`DropoutLayer`的keep_prob这个变量update到feed_dict中,而在测试的时候用`tl.utils.dict_to_one`来update feed_dict.  
+很好用的一个trick是在Graph definition的时候对一个模型定义is_train=True,reuse=False用于训练,对同一个模型定义is_train=False,reuse=True用于测试和验证,通过reuse的设置我们的训练和测试都是针对同一个网络,而通过is_train的设置可以区别网络在训练和测试时行为.这样我们相当于一个模型定义了2个不同的graph,但是二者训练参数又是共享的.从而,不需要再去update feed_dict,省去了很多麻烦.
