@@ -6,19 +6,22 @@ AlexNet主要由8层网络结构组成，其中5层是卷积层，3层是全连�
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/AlexNet.png"/>  
     <br>  
     <em align="center">AlexNet网络结构</em>
-</div>
+</div>  
+
 # VGG
 <div align="center">
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/VGG.png"/>  
     <br>  
     <em align="center">VGG网络结构</em>
-</div>
+</div>  
+
 # GoogLeNet
 <div align="center">
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/GoogLeNet.png"/>  
     <br>  
     <em align="center">GoogLeNet网络结构</em>
-</div>
+</div>  
+
 # ResNet
 <div align="center">
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/ResNet.png"/>  
