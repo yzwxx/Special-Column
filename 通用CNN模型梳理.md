@@ -6,7 +6,14 @@ AlexNet主要由8层网络结构组成，其中5层是卷积层，3层是全连�
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/AlexNet.png"/>  
     <br>  
     <em align="center">AlexNet网络结构</em>
-</div>  
+</div>  
+AlexNet几个独特之处：
+- 激活函数采用ReLU从而增加数据稀疏性，加快网络训练收敛
+- Local Respond Normalization对某个位置的不同卷积输出进行normalization，据说取得更好的泛化能力，但是后来没什么人使用
+- overlapping pooling，一般的池化是没有重叠部分的，重叠池化据说可以避免过拟合，但是后来没什么人用
+详细结构说明：
+卷积+最大池化+卷积+最大池化+卷积+卷积+卷积+最大池化+全连接（加Dropout）+全连接（加Dropout）+全连接输出（softmax）  
+为了避免过拟合采用了Dropout和数据增强。在原始数据基础上，从（256,256）图像提取（224，224）的image translations和image reflections。在测试时候，对每个输入原始图像，截取左上、右上、中间、左下、右下等五个子图分别输入到网络识别，最终求五个输出的平均作为最终输出。
 
 # VGG
 <div align="center">
