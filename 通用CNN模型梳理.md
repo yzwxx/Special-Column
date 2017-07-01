@@ -60,6 +60,6 @@ GoogLeNet和VGGnet都在2014年参加了ImageNet竞赛，最终击败VGG位居�
     <br>  
     <em align="center">ResNet网络结构</em>
 </div>
-对于更深层的网络，一种叫做bottleneck的结构更为合理，因为其参数个数更少，从而不会让深度网络的训练时长变得难以承受。这种结构的优势在于，通过设计两个（1,1）的卷积层来实现维度降低和维度恢复，使得夹在中间的（3,3）卷积层所处理的输入和输出都是低维度的，参数个数为$2\times 1\times 1\times high\times low+1\times 3\times 3\times low\times low$。相比上图中左侧的结构，其参数个数。对于这种结构，skip-connection只能使用identity mapping。
+对于更深层的网络，一种叫做bottleneck的结构更为合理，因为其参数个数更少，从而不会让深度网络的训练时长变得难以承受。这种结构的优势在于，通过设计两个（1,1）的卷积层来实现维度降低和维度恢复，使得夹在中间的（3,3）卷积层所处理的输入和输出都是低维度的，参数个数为$2\times 1\times 1\times high\times low+1\times 3\times 3\times low\times low$。相比上图中左侧的结构，其参数个数为$2\times 3\times 3\times high\times high$，要远大于bottleneck结构。对于这种结构，skip-connection只能使用identity mapping。
 
 
