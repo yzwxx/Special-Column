@@ -48,15 +48,18 @@ GoogLeNet和VGGnet都在2014年参加了ImageNet竞赛，最终击败VGG位居�
     <br>  
     <em align="center">两类常见的Residual blocks网络结构</em>
 </div>  
-（注意：如果残差块的输入输出维度不同，这意味着skip-connection不应该是直接add输入，而是对输入做Projection（或者补零）以后在和卷积层输出add到一起。）  
+（注意：如果残差块的输入输出维度不同，这意味着skip-connection不应该是直接add输入，而是对输入做Projection（或者补零）以后在和卷积层输出add到一起。）  
+
 深度神经网络最常见的梯度弥散问题，已经被normalized初始化以及在模型中加入BatchNorm所解决。然而，随着模型的加深有时候反而模型会变差。这个问题被叫做degradation。残差网络就是专门为了解决degradation而被提出的。degradation的存在暗示我们，多层神经网络来拟合恒等函数效果并不理想，因此残差网络试图拟合残差函数而非恒等函数。  
+
 残差网络结构受VGG net启发，主要采用多个（3,3）卷积层叠加的方式构造残差块。同时遵循一个原则：对于输出feature map尺寸相同的各个层所包含的filter个数相同，如果输出feature map相比输入长宽都缩小了一倍的话，那么filter个数double，以保持每层网络具有相同的time complexity。  
-在残差网络的Downsampling中，每当filter增倍的时候，skip-connection就需要做projection来匹配维度，或者通过补零来扩充维度；事实证明，补零不会对结果造成很大影响，因而是一种最常用的增维方式。而对于filter个数保持不变的残差块中的skip-connection则是identity mapping，减少了参数数量，减少了训练时长。
+在残差网络的Downsampling中，每当filter增倍的时候，skip-connection就需要做projection来匹配维度，或者通过补零来扩充维度；事实证明，补零不会对结果造成很大影响，因而是一种最常用的增维方式。而对于filter个数保持不变的残差块中的skip-connection则是identity mapping，减少了参数数量，减少了训练时长。  
+
 <div align="center">
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/ResNet.png"/>  
     <br>  
     <em align="center">ResNet网络结构</em>
 </div>
-对于更深层的网络，一种叫做bottleneck的结构更为合理，因为其参数个数更少，从而不会让深度网络的训练时长变得难以承受。这种结构的优势在于，通过设计两个（1,1）的卷积层来实现维度降低和维度恢复，使得夹在中间的（3,3）卷积层所处理的输入和输出都是低维度的，参数个数为$2\times1\times\1\timeshigh\timeslow+1\times3\times3\times\low\timeslow$。相比上图中左侧的结构，其参数个数。对于这种结构，skip-connection只能使用identity mapping。
+对于更深层的网络，一种叫做bottleneck的结构更为合理，因为其参数个数更少，从而不会让深度网络的训练时长变得难以承受。这种结构的优势在于，通过设计两个（1,1）的卷积层来实现维度降低和维度恢复，使得夹在中间的（3,3）卷积层所处理的输入和输出都是低维度的，参数个数为$2\times 1\times 1\times high\times low+1\times 3\times 3\times low\times low$。相比上图中左侧的结构，其参数个数。对于这种结构，skip-connection只能使用identity mapping。
 
 
