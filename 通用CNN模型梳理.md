@@ -10,7 +10,7 @@ AlexNet主要由8层网络结构组成，其中5层是卷积层，3层是全连�
 
 AlexNet几个独特之处：  
 - 激活函数采用ReLU从而增加数据稀疏性，加快网络训练收敛  
-- Local Respond Normalization对某个位置的不同卷积输出进行normalization，据说取得更好的泛化能力，但是后来没什么人使用  
+- Local Respond Normalization（LRN）对某个位置的不同卷积输出进行normalization，据说取得更好的泛化能力，但是后来没什么人使用  
 - overlapping pooling，一般的池化是没有重叠部分的，重叠池化据说可以避免过拟合，但是后来没什么人用  
 
 
@@ -27,6 +27,8 @@ VGG net是牛津大学于2014年在论文`VERY DEEP CONVOLUTIONAL NETWORKS FOR L
 </div>  
 
 VGG net严格控制卷积核尺寸为（3,3），因为(3,3）刚好是能包含上下左右中的局部空间相关性的最小尺寸,对应的stride和padding都是1。通常striding为1时，对于（5,5）的卷积核其padding为2,（7,7）的卷积核其padding为3,以此类推。同时，对于池化，采用size和stride都是2的最大池化。值得注意的是，网络还会采用（1,1）的卷积核，可以看作只起到了维度变化的作用。由于整个网络中的卷积层的stride都是1,因此在卷积前后图像的尺寸保持不变，只有在池化层会产生尺度变化。网络的激活函数采用的是ReLU。  
+
+VGG网络没有使用任何normalisation层。   
 
 VGG与其他CNN结构最大的差异在于：  
 - 采用堆叠（3,3）的卷积核来代替（5,5）,（7,7）甚至更大尺度的卷积核。这一做法可以极大地节约参数数量，从而更快地训练网络；同时，用两层（3,3）代替（5,5）也引入了两次激活函数，相比一次激活函数，模型的识别能力更强。  
@@ -54,7 +56,7 @@ Network in Network和Inception Module这类结构主要看中的是模型在局�
     <br>  
     <em align="center">GoogLeNet网络结构</em>
 </div>   
-
+注意，GoogLeNet在前两个卷积层后分别都使用了LRN。  
 
 
 # ResNet
@@ -77,6 +79,8 @@ Network in Network和Inception Module这类结构主要看中的是模型在局�
     <em align="center">ResNet网络结构</em>
 </div>
 对于更深层的网络，一种叫做bottleneck的结构更为合理，因为其参数个数更少，从而不会让深度网络的训练时长变得难以承受。这种结构的优势在于，通过设计两个（1,1）的卷积层来实现维度降低和维度恢复，使得夹在中间的（3,3）卷积层所处理的输入和输出都是低维度的，参数个数为$2\times 1\times 1\times high\times low+1\times 3\times 3\times low\times low$。相比上图中左侧的结构，其参数个数为$2\times 3\times 3\times high\times high$，要远大于bottleneck结构。对于这种结构，skip-connection只能使用identity mapping。
+
+ResNet在每个卷积层后面都使用BN。 
 
 在ResNet之前，还有一些网络已经提出了类似的思想，比如Highway-Network。Highway-Network同样具有加法的特点，但是它并不是一个纯粹的加法，所以在优化过程总较ResNet弱一些。
 
