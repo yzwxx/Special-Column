@@ -85,9 +85,9 @@ ResNet在每个卷积层后面都使用BN。
 在ResNet之前，还有一些网络已经提出了类似的思想，比如Highway-Network。Highway-Network同样具有加法的特点，但是它并不是一个纯粹的加法，所以在优化过程总较ResNet弱一些。
 
 ## 参考文献
-[CNN--结构上的思考](https://zhuanlan.zhihu.com/p/22214112)
-[ImageNet Classification with Deep Convolutional Neural Networks](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks)
-[VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION](https://arxiv.org/abs/1409.1556)
-[Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842)
-[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)
+[CNN--结构上的思考](https://zhuanlan.zhihu.com/p/22214112)  
+[ImageNet Classification with Deep Convolutional Neural Networks](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks)  
+[VERY DEEP CONVOLUTIONAL NETWORKS FOR LARGE-SCALE IMAGE RECOGNITION](https://arxiv.org/abs/1409.1556)  
+[Going Deeper with Convolutions](https://arxiv.org/abs/1409.4842)  
+[Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385)  
 
