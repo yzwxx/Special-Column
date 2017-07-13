@@ -84,6 +84,11 @@ ResNet在每个卷积层后面都使用BN。
 
 在ResNet之前，还有一些网络已经提出了类似的思想，比如Highway-Network。Highway-Network同样具有加法的特点，但是它并不是一个纯粹的加法，所以在优化过程总较ResNet弱一些。
 
+## GPU memory RAM 与模型大小，训练batch_size关系  
+通常来说，只有在数据集很少的时候，我们才会在training loop开始之前将所有数据读取到RAM里面而不会RAM耗尽，这样的好处在于一次读入了所有数据，之后的每个step只需要调取RAM里的数据就可以了，程序运行很快没有运行时数据读取开销。  
+一般地，我们是在训练过程中每个step最开始先读入batch_size对应的数据到RAM里面，由于可以通过调整batch_size可以让RAM不会耗尽空间。GPU memory主要用来存储模型参数、梯度数值以及batch_size对应的数据的。  
+在tf里面可以通过将数据转化成tfrecord再用queue reader读取，可以在GPU训练同时CPU生成数据队列，从而避免读取数据时GPU等待处理数据而浪费计算资源。  
+
 ## 参考文献
 [CNN--结构上的思考](https://zhuanlan.zhihu.com/p/22214112)  
 [ImageNet Classification with Deep Convolutional Neural Networks](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks)  
