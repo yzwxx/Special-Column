@@ -37,7 +37,7 @@ VGG与其他CNN结构最大的差异在于：  
 - VGG net相对其他的方法，参数空间很大，最终的model有520M，AlexNet只有200M，GoogLeNet更少大概26M，1000层的ResNet参数仅有80M左右;所以train一个vgg模型通常要花费更长的时间，所幸有公开的pretrained model让我们很方便的使用。在GPU上采用mini-batch训练的时候需要注意内存占用。在训练过程中，当验证集的识别率不再提升后，应该对learning rate进行decay。同样，模型参数的初始化对训练的效果至关重要，通常会用预训练的结果作为初始值。  
 
 <div align="center">
-    <img src="https://github.com/yzwxx/Special-Column/blob/master/images/VGG_figures.png"/>  
+    <img src="https://github.com/yzwxx/Special-Column/blob/master/images/vgg_figures.png"/>  
     <br>  
     <em align="center">VGG网络所占内存以及参数数量</em>
 </div>  
