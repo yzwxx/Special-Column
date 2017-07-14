@@ -34,7 +34,7 @@ VGG与其他CNN结构最大的差异在于：  
 - 采用堆叠（3,3）的卷积核来代替（5,5）,（7,7）甚至更大尺度的卷积核。这一做法可以极大地节约参数数量，从而更快地训练网络；同时，用两层（3,3）代替（5,5）也引入了两次激活函数，相比一次激活函数，模型的识别能力更强。  
 - 加入很多（1,1）的卷积层来增加模型非线性。  
 - 去掉了LRN，减少了内存的小消耗和计算时间  
-- VGG net相对其他的方法，参数空间很大，最终的model有520M，AlexNet只有200M，GoogLeNet更少大概26M，1000层的ResNet参数仅有80M左右;所以train一个vgg模型通常要花费更长的时间，所幸有公开的pretrained model让我们很方便的使用。在GPU上采用mini-batch训练的时候需要注意内存占用。在训练过程中，当验证集的识别率不再提升后，应该对learning rate进行decay。同样，模型参数的初始化对训练的效果至关重要，通常会用预训练的结果作为初始值。  
+- VGG net相对其他的方法，参数数量很大，最终的model有520M，AlexNet只有200M，GoogLeNet更少大概26M，1000层的ResNet参数仅有80M左右（次数所写的M是指占用存储空间MB，而下图中的M是指Million计数）;所以train一个vgg模型通常要花费更长的时间，所幸有公开的pretrained model让我们很方便的使用。在GPU上采用mini-batch训练的时候需要注意内存占用。在训练过程中，当验证集的识别率不再提升后，应该对learning rate进行decay。同样，模型参数的初始化对训练的效果至关重要，通常会用预训练的结果作为初始值。  
 
 <div align="center">
     <img src="https://github.com/yzwxx/Special-Column/blob/master/images/vgg_figures.png"/>  
