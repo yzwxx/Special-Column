@@ -118,4 +118,5 @@ eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
 print("train metrics: %r"% train_metrics)
 print("eval metrics: %r"% eval_metrics)
 ```
+自定义模型即重写`tf.estimator.Estimator`的`model_fn`函数（which, given inputs and a number of other parameters, returns the ops necessary to perform training, evaluation, or predictions.）。本质上，`tf.estimator.Estimator`只是`model_fn`的一个wrapper。代码中用到了`tf.train.get_global_step()`等，查看[what does get_global_step do](https://stackoverflow.com/questions/42404564/what-does-tf-train-get-global-step-do-in-tensor-flow)。
 
